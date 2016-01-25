@@ -1,7 +1,7 @@
 #ifndef SDLKIT_H
 #define SDLKIT_H
 
-#include "SDL.h"
+#include <SDL/SDL.h>
 #define ERROR(x) error(__FILE__, __LINE__, #x)
 #define VERIFY(x) do { if (!(x)) ERROR(x); } while (0)
 #include <stdio.h>
@@ -214,10 +214,10 @@ static void loop (void)
 			switch (e.type) {
 				case SDL_QUIT:
 					return;
-	
+
 				case SDL_KEYDOWN:
 					keys[e.key.keysym.sym] = true;
-	
+
 				default: break;
 			}
 		}

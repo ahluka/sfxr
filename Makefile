@@ -2,9 +2,14 @@ CFLAGS=-ggdb
 GTK=3.0
 CXXFLAGS=$(CFLAGS) `sdl-config --cflags` `pkg-config gtk+-${GTK} --cflags`
 LDFLAGS=`sdl-config --libs` `pkg-config gtk+-${GTK} --libs`
+LIBS=-lSDL -lgtk-x11-2.0 -lgobject-2.0
+INC=-I/usr/include/gtk-2.0/ -I/usr/include/glib-2.0/ -I/usr/lib/x86_64-linux-gnu/glib-2.0/include/ \
+-I/usr/include/cairo/ -I/usr/include/pango-1.0/ -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include/ \
+-I/usr/include/gdk-pixbuf-2.0/ -I/usr/include/atk-1.0/
 
 sfxr: main.cpp tools.h sdlkit.h
-	$(CXX) $< $(CXXFLAGS) $(LDFLAGS) -o $@
+	$(CXX) $(INC) $< $(CFLAGS) $(LIBS) -o $@
+	#$(CXX) $< $(CXXFLAGS) $(LDFLAGS) -o $@
 
 install: sfxr
 	mkdir -p $(DESTDIR)/usr/bin
